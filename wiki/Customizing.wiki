@@ -1,0 +1,264 @@
+#labels Documentation
+<wiki:toc max_depth="3" />
+
+You can maintain some settings within the administration area. Check it out under 'Settings', it's really simple.
+
+= Templates =
+
+If you would like to have a unique appereance it's pretty easy to create a new template for your public site. The templates are stored in the (...DRUMROLL...) templates folder (TADAAHH!) in separate folders that match the name of the templates. To create a new template it's better to start with an existing one e.g. the ep_default template. This comes with ezpx by default. Follow the steps:
+
+  # Create a new directory with your tempate name (e.g. my_template . REMEMBER not to use any special characters for the folder, just alphanumeric chars, dashes and underscores)
+  # Copy all(!) files to your brand new dir from ep_template.
+  # Edit your template files.
+  # Set your actual template in the config file system/application/config/config.php
+
+In the template files you can (and in most cases you have to) use *ezpx tags* to display dynamic data that is retrieved from database (for example your photos).
+
+= ezpx Tag Descriptions =
+
+Here you can find the currently supported ezpx tags. Beside each tag in superscript you find in which version of ezpx the given tag is supported from.
+
+== Header And Footer - Global ezpx Tags ==
+
+Header and Footer are the wrappers that enclose your blog design. They are included in all pages of your photoblog so eventually all of your pages will be effected if you change something in them. Header is the opening file for your pages and footer is the closing one. We call global tags that can be used in any page - in most cases in your header and footer file. Here's a list of the currently supported global tags:
+
+|| *ezpx global tag* || *description* ||
+|| LOOP:{main_menu}{/main_menu}^1.0^ || The menu of your photoblog may consist of several menu items ('Photos', 'About', 'Links' page etc.) and can grow dynamically (if you add a page for example). This is a looping tag and in the loop you can refer to special elements of a menu item (e.g. the URL of the menu item) with another tag. See the example below. ||
+|| {link_url}^1.0^ || The URL of the menu item. ||
+|| {link_txt}^1.0^ || The text of the menu item. ||
+|| {tpl_base_url}^1.0^ || The base URL of your template directory. (Example output: http://www.example.com/templates/ep_default) ||
+
+*Example #1*
+
+{{{
+  Menu
+  <ul id="main_menu">
+    {main_menu} 
+       <li><a href="{link_url}">{link_txt}</a></li>
+    {/main_menu}
+  </ul>
+}}}
+
+*Example #2*
+{{{
+<link rel="stylesheet" type="text/css" href="{tpl_base_url}/styles.css" />
+}}}
+
+
+== Archives ==
+
+|| *ezpx tag* || *description* ||
+|| {archive_thumbnails}^1.0^ || Displays all your photos' thumbnails. ||
+|| {thumnail_pager}^1.0^ || The pager for your thumbnails. ||
+|| {archive_monthly}^1.0^ || Displays the months that photos were uploaded for. ||
+|| {archive_tagcloud}^1.0^ || Displays tagcloud. The tagcloud styles can be customized within the css file. ||
+
+*Example*
+
+{{{
+<div class="archives">
+  <h1>Thumbnail parade</h1>
+  <div class="thumbnails">{archive_thumbnails}</div>
+  <div style="clear: both;">{thumbnail_pager}</div>
+  
+  <br /></br />
+  
+  <h1>Archives by month</h1>
+  {archive_monthly}
+  
+  <br /></br /><br />
+  
+  <h1>Tagcloud</h1>
+  <div id="tagcloud">
+    {archive_tagcloud}
+  </div>
+</div>
+}}}
+
+== Commentform ==
+
+Note that currently the commentform can be displayed only for photos and not for pages or links.
+
+|| *ezpx tag* || *description* ||
+|| {comment_form_open}^1.0^ || In order to get comment form working you have to start it with this tag. Practically it's the opening HTML form tag with the proper settings. ||
+|| {comment_errors}^1.0^ || Displays the error messages after sending the form. ||
+|| {comment_success}^1.0^ || Displays the comment success message after sending the form. Optional. ||
+|| {comment_name_input}^1.0^ || Comment name input tag. For CSS you can use the id 'comment_name_input'. ||
+|| {comment_email_input}^1.0^ || Comment email input tag. For CSS you can use the id 'comment_email_input'. ||
+|| {comment_body_input}^1.0^ || Comment name textarea. For CSS you can use the id 'comment_body_input'. ||
+|| {comment_captcha_image}^1.0^ || Displays the CAPTCHA image. ||
+|| {comment_captcha_input}^1.0^ || Comment captcha input tag. For CSS you can use the id 'comment_captcha_input'. ||
+|| {comment_submit_button}^1.0^ || Displays the comment submit button. For CSS you can use the id 'comment_submit_button'. ||
+|| {comment_form_close}^1.0^ || Closes the comment form. This tag is mandatory if you would like to use commenting. ||
+
+*Example*
+
+{{{
+<div id="comment_form">
+  
+  {comment_form_open}
+  
+  <div class="comment_errors">{comment_errors}</div>
+  
+  <div class="comment_success">{comment_success}</div>
+  
+  <div class="form_label">Name:</div>
+  <div class="form_input">{comment_name_input}</div>
+  
+  <div class="form_label">E-mail:</div>
+  <div class="form_input">{comment_email_input}</div>
+  
+  <div class="form_label">Your comment:</div>
+  <div class="form_input">{comment_body_input}</div>
+  
+  <div class="form_label">You know what to do:</div>
+  <div class="form_input">
+    {comment_captcha_image}<br />
+    {comment_captcha_input}
+  </div>
+  
+  <div class="form_label">&nbsp;</div>
+  <div class="form_input">{comment_submit_button}</div>
+  
+  {comment_form_close}  
+</div>
+}}}
+
+== Links ==
+
+|| *ezpx tag* || *description* ||
+|| {links}{/links}^1.0^ || Looping tag that displays your links. ||
+|| {url}^1.0^ || The URL of the current link. ||
+|| {title}^1.0^ || Outputs the title of the current link. If no title is maintained for the given link, the URL is returned. ||
+|| {body}^1.0^ || Description body of the link. ||
+
+{{{
+<h1>Links</h1>
+
+<div id="links">
+  {links}
+    <a href="{url}" target="_blank">{title}</a> {body}<br>    
+  {/links}
+</div>
+}}}
+
+== Mainpage (photos) ==
+
+|| *ezpx tag* || *description* ||
+|| {photos}{/photos}^1.0^ || Looping tag to display the number of photos that is set in the admin. ||
+|| {photo_details}^1.0^ || Link to the detailed photo post. ||
+|| {photo_file}^1.0^ || Displays the photo file. ||
+|| {prev_post_link|Previous text}^1.0^ || Displays a link to the previous photo. Right after the pipe (|) you can set the text of the previous link. ||
+|| {next_post_link|Next text}^1.0^ || Displays a link to the next photo. Right after the pipe (|) you can set the text of the next link. ||
+|| {prev_post_photo|do_link}^1.0^ || Displays a link to the previous photo with the thumbnail of the previous photo. If you add 'do_link' as a parameter after the pipe (|) the image is displayed as a link. ||
+|| {next_post_photo|do_link}^1.0^ || Displays a link to the next photo with the thumbnail of the next photo. If you add 'do_link' as a parameter after the pipe (|) the image is displayed as a link. ||
+
+*Example*
+
+{{{
+{photos}
+  <div class="photo_container">
+  <a href="{photo_details}"><img src="{photo_file}" border="0"></a>
+  </div>
+{/photos}
+
+<div id="pager">
+  <div style="float: left;">
+    {prev_post_link|<b>&laquo; Previous Photo</b>}
+    <!--{prev_post_photo|do_link}-->
+  </div>
+  <div style="float: right;">
+    {next_post_link|<b>Next Photo &raquo;</b>}
+    <!--{next_post_photo|do_link}-->
+  </div>
+  <br style="clear: both;" />
+</div>
+}}}
+
+== Pages ==
+
+|| *ezpx tag* || *description* ||
+|| {title}^1.0^ || Outputs the title of the current page. ||
+|| {body}^1.0^ || Displays the body of the current page. ||
+
+*Example*
+
+{{{
+<h1>{title}</h1>
+<p>{body}</p>
+}}}
+
+== Photo ==
+
+This page displays your photos and a commentform for the given photo.
+
+|| *ezpx tag* || *description* ||
+|| {photo_file}^1.0^ || Returns the location of the photo file. It does not display any image HTML so you have to put it as the src attribute of the IMG tag. Please see example below. ||
+|| {title}^1.0^ || Displays the title of the current photo. ||
+|| {tags}^1.0^ || Displays the tags for the current photo. ||
+|| {body}^1.0^ || Displays the description body of the current photo. ||
+|| {upload_date}^1.0^ || Displays the upload date of the current photo. ||
+|| {original_file}^1.0^ || Displays a link to the original (non-resized) file of the current photo. ||
+|| {comment_form}^1.0^ || Displays the comment form. For the customizing of the comment form please the comment form part of this wiki page. ||
+|| {no_comments}^1.0^ || If there's no comment for the current photo, then a message is displayed. ||
+|| {comments}{/comments}^1.0^ || Looping tag for all comments for the current photo. ||
+|| {comment_name}^1.0^ || Displays the commenter name for the comment in the loop. ||
+|| {comment_email}^1.0^ || Returns the email of the commenter. We do not recommend putting it out because of spamming. ||
+|| {comment_date}^1.0^ || Displays the date of the comment in the loop. ||
+|| {comment_body}^1.0^ || Displays the body of the comment in the loop. ||
+|| {comment_pager}^1.0^ || Displays the pagingation for the comments. ||
+
+*Example*
+
+{{{
+<div class="photo_container">
+  <a href="javascript:history.go(-1);"><img src="{photo_file}" border="0"></a>
+</div>
+
+<div class="photo_properties">
+  <h1>{title}</h1>
+  <?php if ($tags) {?><h4>Tags: {tags}</h4><?php }?>
+  <p>{body}</p>
+  <p>
+    Uploaded: {upload_date}
+    {original_file}
+  </p>
+  
+  {comment_form}
+  
+  <h3>Comments</h3>
+  <div id="no_comments">{no_comments}</div>
+  
+  {comments}
+    <span class="comment_name">{comment_name}</span> {comment_date}<br>
+    {comment_body}
+    <br /><br />
+  {/comments}
+  
+  {comment_pager}
+  
+  <br />
+  <p><a href="javascript:history.go(-1);">&laquo; Back to the photos</a></p>
+</div>
+}}}
+
+== Search ==
+
+|| *ezpx tag* || *description* ||
+|| {search_title}^1.0^ || Outputs the title of the current search type (e.g. 'Search by tags'). ||
+|| {search_results}^1.0^ || Outputs the search result thumbnail style. ||
+|| {search_pager}^1.0^ || Displays the pagination for the search. ||
+
+*Example*
+
+{{{
+<div class="archives">
+  <h1>{search_title}</h1>
+  <div class="thumbnails">{search_results}</div>
+  <div style="clear: both;">{search_pager}</div>
+</div>
+}}}
+
+= Using PHP  =
+
+If you know a little php, you can use it freely in the template files. 

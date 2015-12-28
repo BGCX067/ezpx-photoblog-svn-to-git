@@ -1,0 +1,23 @@
+[Upgrading CLICK HERE FOR UPGRADE INSTRUCTIONS!]
+
+ezpx uses [http://codeigniter.com Codeigniter application framework] so the installation process highly depends on Codeigniter settings.
+
+===Installation steps for the current version: ===
+
+  # Unzip the ezpx package. It contains all the files that are needed for installation.
+  # Create a MySQL database for ezpx.
+  # Open the file *system/application/config/config.php*. This is the standard Codeigniter config file complemented with some ezpx related configuration. In order to get your photoblog up and running you must maintain the {{{$config['base_url']}}}, {{{$config['admin_username']}}} and {{{$config['admin_password']}}} variables. All other variables are optional but check them anyways.
+  # Open the file *system/application/config/database.php* and maintain your database settings.
+  # Upload all files to your webserver.
+  # Set the folders ./captcha and ./photos writeable (chmod 775 or 777). (They will hold the captcha images and your photos respectively, they're empty by default except for an index.html file for security reasons.)
+  # Go to your ezpx URL where an install screen is waiting for you. Read the instructions carefully and press the big busty *Install* button.
+  # Delete the {{{_INSTALL_DEL_THIS_DIR}}} folder.
+
+You can now go to *_your photoblog url_/index.php?/admin* in your favorite web browser which is [http://firefox.com Firefox] or [http://apple.com/safari Safari] and login with your admin username and password (see step 3.) and here we go.
+
+
+=== What if I get an error? ===
+
+That sucks, we know... You can post us a bug ticket in our googlecode issue page. We try to do our best to give support and fix issues and bugs meanwhile developing new features.
+
+In some cases your Codeigniter configuration might be incorrect according to your server settings. Important note: Codeigniter does not take responsibility to ezpx but you can have a look at the Codeigniter forum and search for a solution.

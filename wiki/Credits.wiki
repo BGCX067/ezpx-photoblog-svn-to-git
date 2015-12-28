@@ -1,0 +1,1 @@
+ezpx is created by Peter Zimon and Gabor Imre. It uses Codeigniter Application Development Framework, JQuery, Lightbox and SWFUpload. Please refer to each respectively for detailed documentation.

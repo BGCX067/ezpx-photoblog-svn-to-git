@@ -1,0 +1,5 @@
+  * PHP 4.3.2 or above (tested okay with PHP 4) with module GD and EXIF.
+  * MySQL 4.1 or above
+  * Apache webserver
+  * Approx. 4 megabytes for core framework and a lot of space for your photos.
+  * ezpx is OS independent.

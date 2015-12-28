@@ -1,0 +1,15 @@
+#labels Documentation
+If you are upgrading from previous versions you have to do the following. Please read the instructions carefully before you start the upgrade process!
+
+  # *BACKUP ALL YOUR FILES AND THE DATABASE FROM YOUR PREVIOUS EZPX!* That is:
+    # Download all files from the server to your local machine. 
+    # Make a backup of your ezpx database. PHPMyAdmin (http://www.phpmyadmin.net) can be a right tool for database backup.
+  # Unzip the newest version of ezpx to your local machine.
+  # Open the file system/application/config/config.php in your favorite text editor. In order to get your photoblog up and running you must re-maintain the {{{$config['base_url']}}}, {{{$config['admin_username']}}} and {{{$config['admin_password']}}} *HINT: You can use the config file from your previous version as a guide.*
+  # Open the file system/application/config/database.php in your text editor and re-maintain your database settings.
+  # Delete the ./system from the server
+  # Upload the ./system AND the {{{_INSTALL(DEL_THIS_DIR)}}} folders from your local machine to the server.
+  # Go to your ezpx URL. If any database modification is needed, then you will see an upgrade screen. Read the instructions carefully and press the Upgrade button. (If no update modification is needed then you're done.)
+  # Delete the {{{_INSTALL(DEL_THIS_DIR)}}} folder.
+
+Here we go.

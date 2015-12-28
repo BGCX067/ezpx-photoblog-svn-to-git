@@ -1,0 +1,26 @@
+*For new enhancements and their statues check the [http://code.google.com/p/ezpx-photoblog/issues/list issues]*
+
+=== 1.0.2 Features ===
+  * minor bugfixes
+  * delete of page function added
+  * delete of link function added
+
+=== 1.0.1 Features ===
+  * new administration area design
+  * jquery datepicker is added to photo post date
+
+=== 1.0 Features ===
+
+  * core functionalities, like upload photos
+  * web based installer
+  * cropped thumbnails
+  * modify postdate of photos
+  * rotate photos
+  * archives (all photos/thumbnail/monthly)
+  * links
+  * tags for photos
+  * comments for photos
+  * captcha for comments
+  * languages
+  * comments moderation
+  * install guide and wiki
